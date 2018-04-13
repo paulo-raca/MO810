@@ -120,3 +120,6 @@ Basically, I'm normalizing the Open/Close/High/Low values to be a milliBells var
 
 Afterwards, I'm lining up X days in a row to create a feature vector that can be consumed by a neural network (The X-1 days are the input, and the last entry is the expected output)
 
+I still have no idea how to handle Volume, since it varies a lot between companies.
+It could probably be normalized by the total number of shares in the company?
+Anyway, we'll ignore it for now.
