@@ -1,0 +1,3 @@
+[submodule "mo810-stock-predict"]
+	path = stock-predict
+	url = git@github.com:paulo-raca/mo810-stock-predict.git
