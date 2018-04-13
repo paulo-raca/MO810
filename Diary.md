@@ -110,4 +110,13 @@ I'm now considering that instead of trying to model stock values as a regression
 Some extra details have been added on the [project's github](https://github.com/paulo-raca/mo810-stock-predict/blob/master/README.md#semi-automatic-trading)
 
 
+## 2018-04-12
+
+### Pre-Processing
+
+After realizing that other groups were starting to get results and stuff, while we had barely looked at the dataset, today I started pre-processing the data:
+
+Basically, I'm normalizing the Open/Close/High/Low values to be a milliBells variation from the last day's closing price. (Yes, milliBells -- It's weird, but I wanted a logarithm scale, and the daily variations are just so tiny)
+
+Afterwards, I'm lining up X days in a row to create a feature vector that can be consumed by a neural network (The X-1 days are the input, and the last entry is the expected output)
 
