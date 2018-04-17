@@ -123,3 +123,21 @@ Afterwards, I'm lining up X days in a row to create a feature vector that can be
 I still have no idea how to handle Volume, since it varies a lot between companies.
 It could probably be normalized by the total number of shares in the company?
 Anyway, we'll ignore it for now.
+
+
+
+## 2018-04-15
+
+### AI Gym
+
+Over the weekend I looked into OpenAI Gym as a mean to perform reinforcement learning of our trader.
+
+It's actually a very simple API: 
+1. Send state to AI
+2. Receive action from AI
+3. Compute next state and reward (Profit!)
+4. Repeat
+
+While I still haven't coded the stock trading environment, it is straightforward enough.
+
+On the other hand, it is completely open on the learning side of the things, and I really haven't scrapped the surface on how to do it (with tensorflow or whatever)
