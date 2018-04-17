@@ -141,3 +141,12 @@ It's actually a very simple API:
 While I still haven't coded the stock trading environment, it is straightforward enough.
 
 On the other hand, it is completely open on the learning side of the things, and I really haven't scrapped the surface on how to do it (with tensorflow or whatever)
+
+
+
+
+## 2018-04-16
+
+So I got the book -- Somehow, it was cheaper to buy from Amazon US than in Brazil, but the (cheapest) shipping took a while.
+
+I'll skip Part I for now and I'm reading about FNN.
