@@ -150,3 +150,15 @@ On the other hand, it is completely open on the learning side of the things, and
 So I got the book -- Somehow, it was cheaper to buy from Amazon US than in Brazil, but the (cheapest) shipping took a while.
 
 I'll skip Part I for now and I'm reading about FNN.
+
+## 2018-04-18
+
+Found this project: https://github.com/deependersingla/deep_trader
+
+Seems interesting, we'll take a deeper look into it later.
+
+## 2018-04-21
+
+I have been doing some reading on reinforcemente learning, and apparently it works best on problems with discrete outputs (left or right, etc). Bummer.
+
+But it seems that it also works well if you can provide the derivatives for the goal function (In which case it isn't really different from a standard FNN), so I guess this is the path we will have to take. While doing that within a day seems straightforward, doing it on a longer time stretch may be a challenge.
