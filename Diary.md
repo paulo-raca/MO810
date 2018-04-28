@@ -162,3 +162,17 @@ Seems interesting, we'll take a deeper look into it later.
 I have been doing some reading on reinforcemente learning, and apparently it works best on problems with discrete outputs (left or right, etc). Bummer.
 
 But it seems that it also works well if you can provide the derivatives for the goal function (In which case it isn't really different from a standard FNN), so I guess this is the path we will have to take. While doing that within a day seems straightforward, doing it on a longer time stretch may be a challenge.
+
+
+## 2018-04-27
+
+Time is running up!
+
+I have to give this project some love over the long weekend.
+
+This is a rough TODO list:
+- Create an OpenAI Gym environment for trading.
+- Create a dumbed down trading algorithm that buys for `mean(low)` and sells for `mean(high)` and see how it performs
+- Use tensorflow as a regression to estimate Low/High/Open/Close prices on the next trading day.
+- Improve trading algorithm that buys for `estimate(low)` and sells for `estimate(high)`
+- Estimate derivatives of the trading algorithm and try to use reinforcement learning.
