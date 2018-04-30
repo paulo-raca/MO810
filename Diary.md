@@ -157,6 +157,26 @@ Found this project: https://github.com/deependersingla/deep_trader
 
 Seems interesting, we'll take a deeper look into it later.
 
+Also, since we shifted our project from estimating stock prices to creating a stock trader, I sent this explanation to the professor:
+
+> We will keep using the Kaggle dataset with daily summaries of stock value.
+> 
+> We are looking at a more long-term trader (Particularly since the dataset only has 1 day resolution).
+> 
+> The idea is to train a network such as:
+> As input:
+> - Historical values of the stock of several companies
+> - Amount of stocks owed of each company
+> - Amount of money available.
+> As output:
+> - it produces a set of buy and sell orders valid for the next day.
+> - Each order in the form {Buy|Sell} {amount} from {company} for ${cost}
+>   (Possibly only one Buy and one Sell order will be created per day per company)
+> For evaluation, we will simulate trading using historical data
+> Knowing the actual price range for the next day, we can tell which orders succeeded and compute the next state (amount of money + amount of stocks owned of each company)
+> We evaluate the performance at a given day using the change on the account's Market value at the end of the next day (Market Value = amount of money + Σamount of stocks * price of stock).
+> Likewise, we will evaluate the performance over a longer amount of time by running it several times consecutively and comparing the initial and final market values.
+
 ## 2018-04-21
 
 I have been doing some reading on reinforcemente learning, and apparently it works best on problems with discrete outputs (left or right, etc). Bummer.
