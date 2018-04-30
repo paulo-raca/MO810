@@ -164,10 +164,12 @@ Also, since we shifted our project from estimating stock prices to creating a st
 > We are looking at a more long-term trader (Particularly since the dataset only has 1 day resolution).
 > 
 > The idea is to train a network such as:
+>
 > As input:
 > - Historical values of the stock of several companies
 > - Amount of stocks owed of each company
 > - Amount of money available.
+>
 > As output:
 > - it produces a set of buy and sell orders valid for the next day.
 > - Each order in the form {Buy|Sell} {amount} from {company} for ${cost}
