@@ -198,3 +198,38 @@ This is a rough TODO list:
 - Use tensorflow as a regression to estimate Low/High/Open/Close prices on the next trading day.
 - Improve trading algorithm that buys for `estimate(low)` and sells for `estimate(high)`
 - Estimate derivatives of the trading algorithm and try to use reinforcement learning.
+
+
+
+
+## 2018-04-29
+
+Time continues to run up 😭
+
+I spent the last couple of days reading on [Hands-on Machine Learning with Scikit-Learn and TensorFlow](https://github.com/ageron/handson-ml). It's a really good book!
+
+It gave several new ideas and insights to evolve my trading network:
+- I considered trying to perform 1D convolutions on the historic data to see if it can extract any useful features from it, but meh, it doesn't fit too well on the model of a continuous process.
+- I now mostly understand how reinforcement learning works on non-discrete problems, but it seems like too complicated and slow to train
+- Recurrent neural networks are the way to go -- The internal state on a LSTM / GRU cells does roughly the kind of feature extraction I expected from a convolutional layer, and the usual gradient descent method can be applied almost directly during training.
+
+Despite changing my mind from reinforcement to recurrent networks, the architecture is basically the same: The network is split in 2 parts, the environment (static, behaves according to the historic data and rules of the stock market) and the trader, which is optimized to maximize the account value at the end of the time series:
+
+For each time `t`, the environment sends to the network inputs: (for each entry in the minibatch)
+- The high/low/open/close values of the last day for several stock symbols (Historical data should be embedded in the network state)
+- Amount of stocks owned for each of the symbols
+- Amount of money available.
+
+The network outputs: (for each entry in the minibatch)
+- A set of buy or sell orders to be executed (Amount of stocks and threshold prices), for each company
+or 
+Based on the historical data, the environment checks which orders were executed and prepares the state of the next iteration.
+
+
+A few implementation considerations:
+- Ideally, all this should happen inside a magic tensorflow node that knows how to deal with recurrent neural networks. Unfortunately, I'm not familiar enough with the implementation details to make an environment that works along with it. Instead, I'm probably going to use a network statically unrolled on time.
+- The optimizer is set to maximized the account value at the last iteration (Some normalization might be applied)
+- On real stock markets, orders are discrete:
+    - You either hit a buy/sell threashold or you don't
+    - You may only own an integer amount of stocks
+  This might be rough for the optimizer. Instead, I'll try trainning on an environment where the amount of stocks can be non-integer, and there is a transition curve on order price thresholds. Still, I'm not sure and that will have to be tested.
