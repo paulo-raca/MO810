@@ -251,7 +251,13 @@ More details on [the commit](https://github.com/paulo-raca/mo810-stock-predict/c
 
 ## 2018-05-01
 
+### Trainning something!
+
 Ok, I have now replace the dumb heuristics by a simple linear function of the latest days's data.
 As soon as it starts trainning, my performance increases form -0.18%/day to zero -- And stays stuck forever :/
 
 Well, at least it's not negative. Interestingly, if I try to minimize the profit instead, I do a few positive results -- As high as 0.28%/day, but that's probably just a glitch
+
+Of course, I still need to to normalize the input dataset (Since each company/date has wildly different values, and we are mostly interested on percentual price variations instead of absolute prices
+
+Also, I've added a little bit of tensorboard monitoring :)
