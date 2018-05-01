@@ -246,3 +246,12 @@ Unfortunately, I didn't really train a good trader yet -- It's just a basic heur
 Nevertheless, that's a significant progress!
 
 More details on [the commit](https://github.com/paulo-raca/mo810-stock-predict/commit/5f162d1ef9e98166f44200ca54173476fc131584)
+
+
+
+## 2018-05-01
+
+Ok, I have now replace the dumb heuristics by a simple linear function of the latest days's data.
+As soon as it starts trainning, my performance increases form -0.18%/day to zero -- And stays stuck forever :/
+
+Well, at least it's not negative. Interestingly, if I try to minimize the profit instead, I do a few positive results -- As high as 0.28%/day, but that's probably just a glitch
