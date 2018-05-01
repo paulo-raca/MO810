@@ -233,3 +233,16 @@ A few implementation considerations:
     - You either hit a buy/sell threashold or you don't
     - You may only own an integer amount of stocks
   This might be rough for the optimizer. Instead, I'll try trainning on an environment where the amount of stocks can be non-integer, and there is a transition curve on order price thresholds. Still, I'm not sure and that will have to be tested.
+
+
+## 2018-04-30
+
+### Some progress, at last!
+
+I managed to build a tensorflow environment that simulates trading over a time window and evaluates the mean profitability per day.
+
+Unfortunately, I didn't really train a good trader yet -- It's just a basic heuristic that doesn't seem to perform very well.
+
+Nevertheless, that's a significant progress!
+
+More details on [the commit](https://github.com/paulo-raca/mo810-stock-predict/commit/5f162d1ef9e98166f44200ca54173476fc131584)
