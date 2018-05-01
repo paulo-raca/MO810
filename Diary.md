@@ -261,3 +261,27 @@ Well, at least it's not negative. Interestingly, if I try to minimize the profit
 Of course, I still need to to normalize the input dataset (Since each company/date has wildly different values, and we are mostly interested on percentual price variations instead of absolute prices
 
 Also, I've added a little bit of tensorboard monitoring :)
+
+### A little bit more progress
+
+I'm now using normalized data inside the trader, which makes the trainning much more stable.
+
+Yet, as-is, it doesn't get any better than 0%/day.
+
+That's pretty bizarre, isn't it?
+
+Turns out that the problem lies on the buy/selling thresholds. If you sell for less than the maximum price, you get a nice derivative saying "Charge more the next time". On the other hand, once you are over the threshold, you get a zeroish derivative saying "Meh, nothing happened".
+
+The result is that the selling prices are constantly pushed higher, and the buying prices are pushed lower, until they are so off that the trader basically only buys too-cheap and only sells too-expensive, stoping basically all transactions. :/
+
+I've trying alleviating this problem using a smoother threashold (a sigmoid):
+
+```
+def smooth_lte(a, b):
+    return tf.sigmoid(5*(b/a - 1), name='smooth_lte' )
+```
+
+The results with this are terrific. In fact, too good to be true: over ~3.5%/day. 
+
+Unfortunately, as I make the threashol tighter and tighter, the performance degrades back to 0-ish.
+Also, training on a smooth threshold and executing on a binary one isn't any better :/
