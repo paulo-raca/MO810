@@ -285,3 +285,14 @@ The results with this are terrific. In fact, too good to be true: over ~3.5%/day
 
 Unfortunately, as I make the threashol tighter and tighter, the performance degrades back to 0-ish.
 Also, training on a smooth threshold and executing on a binary one isn't any better :/
+
+
+## 2018-05-03
+
+Today I talked to the professor about the issues we were facing, and anso sent a summary of everything we have done so far to his email.
+
+
+## 2018-05-06
+No development over the weekend, but got 2 email from the professor:
+- A follow-up for the email about our development so far (Things seems to be more-or-less Okay)
+- A request for my diary (So I'm writing and extra entry about it ¯\_(ツ)_/¯ )
