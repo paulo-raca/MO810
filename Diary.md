@@ -319,5 +319,25 @@ Today I talked to the professor about the issues we were facing, and anso sent a
 
 ## 2018-05-06
 No development over the weekend, but got 2 email from the professor:
+- A request for my diary (So I'm writing and extra entry about it ¯\\_(ツ)_/¯ )
 - A follow-up for the email about our development so far (Things seems to be more-or-less Okay)
-- A request for my diary (So I'm writing and extra entry about it ¯\_(ツ)_/¯ )
+
+> Dear Paulo and Ricardo,
+> 
+> Thanks you for all the materials.  I read your message, reviewed your former message (for topic and dataset), and was able to find the dataset in the URL provided.
+> 
+> As for the graph, I saw the PNG picture you sent, but it has not enough details on the graph.  For instance, what kinds of layers it has?  Dense? Convolutional?   Other?  I also tried to find this information in the Jupyter file you provided, and sure enough there is the graph building code there.  However, I noptivced that you don't use any pre-build estimators or models, but decided instead to build your graph with more primitive operations, such as placeholders, variable, constants, and explicit connections between the components.  Ok.
+> 
+> I also believe the code in the Jupyter notebook is capable of generating the graph depicyed in the PNG picture.  So, all is fine.
+> 
+> Thanks for the 0.05 baseline.
+
+The follow-up:
+
+> Hello, professor,
+> 
+> Most of the code / most of the graph is actually used to build the trading simulator inside tensorflow. The part being trained is very small portion of it, and consists of a vanilla dense network.
+> 
+> The graph we attached only shows the high-level stuff, otherwise it would be too hard to visualize, but you can navigate the interactive graph if you run the jupyter notebook on your machine.
+> 
+> Thanks
