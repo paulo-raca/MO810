@@ -291,6 +291,31 @@ Also, training on a smooth threshold and executing on a binary one isn't any bet
 
 Today I talked to the professor about the issues we were facing, and anso sent a summary of everything we have done so far to his email.
 
+> Hello, Professor.
+> 
+> We've developed a model for stock trading simulation and trading:
+> 
+> As we described previously, the inputs are the historic data for a number of companies.
+> 
+> Our problem is modeled as a simulation of sequential trading days. For each day, we have:
+> - The trader which, based on current amount of money and stocks owned, and historic data of the last few days (a sliding window of the historic data), decided on buying and selling orders for that day.
+> - The simulator, which knowing the actual price ranges for that day, executes some of the trading orders and creates the next state, used as input for the next day.
+> 
+> The sequential trading days are split in 2 parts:
+> - Warmup: We simulate trading on the first few days, but do not use them to measure the performance, since it's likely to perform differently when starting with an empty stock portfolio
+> - Evaluated days: Are simulated just like the warmup days, but their average daily profitability is used as our performance measurement.
+> 
+> Attached is a tensorboard picture with the high-level graph of our model for 24 consecutive days (4 warmup + 20 evaluation)
+> 
+> The code is currently into a Jupyter notebook, which can be found at https://github.com/paulo-raca/mo810-stock-predict/blob/master/TensorFlow-Trader.ipynb
+> 
+> Unfortunately, our result have been terrible so for. As far as we could tell, the discontinuity of the profitability function makes the derivatives (And the gradient descent algorithm) unreliable. Specifically, when computing a sell price below the maximum for the day, we get a positive derivative saying "Hey, you could have charged more", but once the prices goes over the maximum, we get no profit and a zero derivative.
+> 
+> Therefore, currently our training raises the selling prices and lowers the buying prices until it executes no transaction at all. We plan to work around this discontinuity by using a smoother surrogate derivative for the selling threshold.
+> 
+> We have already tried using a non-discrete price threshold (A sigmoid centered at the maximum/minimum prices of the day), and the performance was terrific (> 3%/day profit, actually too good to be true), but the trainning didn't generalise when evaluating on the discrete function.
+> 
+> As mentioned previously, our performance is being measured as mean daily profitability, in %/day. As a baseline, our current best has been 0%/day 😥. We've researched for other projects that could be used as baselined (e.g., this and this), but the papers we found either used different performance metrics, don't show their numeric results (Only compare them), or are based on different stock markets. Instead, we'll set our goal to 0.05%/ day (~13% / year) or more.
 
 ## 2018-05-06
 No development over the weekend, but got 2 email from the professor:
