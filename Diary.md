@@ -341,3 +341,24 @@ The follow-up:
 > The graph we attached only shows the high-level stuff, otherwise it would be too hard to visualize, but you can navigate the interactive graph if you run the jupyter notebook on your machine.
 > 
 > Thanks
+
+## 2018-05-23
+
+Finally back at the project after a few weeks distracted by other stuff.
+
+The first thing I've worked on is the binary threshold with smooth gradient I've discussed before.
+I'm using the approach discussed [here](https://stackoverflow.com/a/36480182/995480) to create a node that behaves as distinct functions for value (forwards pass) and gradient (backward pass).
+
+Based on this, I've written a little helper class to implement some operations like  `<`, `≤`, `≥` and `>`, `floor`, `ceil` and `round` with a gradient usable for trainning.
+
+Finally, I've re-written the trading simulator code to use these functions and being overall derivable.
+
+Yet, despite all the changes, I cannot get a single positive outcome :(
+
+## 2018-05-24
+
+I spent a lot of time trying to get any positive result of the trader, something seens very wrong, as no selling trade seems to happen whatsoever.
+
+After lots of debugging and reviewing of the code, I found a copypaste error. Fixing it yields suspiciously profitable results at first (like ~8%/day), but training yields smaller and smaller gains all the time.
+
+There is obviously something still broken, more debugging will follow...
