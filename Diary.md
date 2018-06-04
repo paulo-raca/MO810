@@ -362,3 +362,16 @@ I spent a lot of time trying to get any positive result of the trader, something
 After lots of debugging and reviewing of the code, I found a copypaste error. Fixing it yields suspiciously profitable results at first (like ~8%/day), but training yields smaller and smaller gains all the time.
 
 There is obviously something still broken, more debugging will follow...
+
+## 2018-06-03
+
+I'm meeting with Ricardo to exchange ideas on the project tomorrow. Just throwing up a few ideas here to discuss later:
+- Double check that the trader is doing the right things -- e.g., No random 10%/day profit margin
+- Use Google Colab -- The model trains fast for now, but I'd love to use their GPUs.
+- Modify `historic_data` tensor to be `[minibatch_index][day][company]
+- The trader model is still _very_ simple -- Single layer, no activation, trade volume is ignored. It's time to write the real thing where, the trader uses multi-layer a LSTM / GRU cells.
+- Warm-up trainning with stock price prediction:
+  - This should be able to train the network to detect important features
+  - Maybe the current normalized model isn't ideal (`100*ln(new_price/old_price)`), as it only considers the price of the previous day. We could try a few alternatives: 
+    - Normalize all days by the same price (e.g., mean cost in the last X days, cost in the first/last day, etc)
+    - Normalize using the simpler formula `100*(new_price/old_price - 1)`, which should be very similar, yet a tidy faster.
