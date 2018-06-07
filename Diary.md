@@ -402,4 +402,4 @@ I did some cheating today: Instead of leting the trader NN decide on buy/sell pr
 
 While it's a silly heuristic that doesn't account for large time scales, this is a fine heuristic that should yield mostly good results, right? Nope, results are still mostly negative. More debugging awaits me.
 
-Also, Ricardo started working on a report today.
+Also, Ricardo started working on the report/video today.
