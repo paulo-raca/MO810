@@ -359,7 +359,7 @@ Yet, despite all the changes, I cannot get a single positive outcome :(
 
 I spent a lot of time trying to get any positive result of the trader, something seens very wrong, as no selling trade seems to happen whatsoever.
 
-After lots of debugging and reviewing of the code, I found a copypaste error. Fixing it yields suspiciously profitable results at first (like ~8%/day), but training yields smaller and smaller gains all the time.
+After lots of debugging and reviewing of the code, I found a copypaste error. Fixing it yields suspiciously profitable results at first (like ~8%/day), but training yields smaller and smaller gains all the time -- Until it eventually crashes complaining about a NaN or infinity somewhere.
 
 There is obviously something still broken, more debugging will follow...
 
@@ -375,3 +375,31 @@ I'm meeting with Ricardo to exchange ideas on the project tomorrow. Just throwin
   - Maybe the current normalized model isn't ideal (`100*ln(new_price/old_price)`), as it only considers the price of the previous day. We could try a few alternatives: 
     - Normalize all days by the same price (e.g., mean cost in the last X days, cost in the first/last day, etc)
     - Normalize using the simpler formula `100*(new_price/old_price - 1)`, which should be very similar, yet a tidy faster.
+
+## 2018-06-04
+
+The meeting went pretty much as expected, and we plan to:
+- ASAP: Ricardo should review and double-check the simulator code for mistakes, and I should look into those nasty infinity errors
+- Next step, will replace the trader network with a multi-layer LSTM / GRU network
+- We will pre-train the new network as a regression of the open/close/high/low/volume of the a few days in the future, in hope that it will learn how to extract important features.
+- We will lock some of the layers of the LSTM and finally optimize it for maximun profit on the simulator
+
+Also, during our brief meeting we managed to get the project working within Colaboratory :D
+
+## 2018-06-05
+
+Today I made a whole bunch of cleanups, moving non-core stuff into their own .py files (tensorboard integration, softops mini-library, etc), and improving tensorboard integration to run inside remote machines (Colaboratory) via an ngrok tunnels.
+
+Finally, I was able to pinpoint the source of Inifinitys / NaN: simply a copy-paste error.
+
+Crashes are gone, and the stddev is _much_ reasonable (from 5% down to 0.5%).
+
+Yet, results continue to be mostly negative, with trainning converging to zero :(
+
+## 2018-06-06
+
+I did some cheating today: Instead of leting the trader NN decide on buy/sell prices, I'll spend all the money buying stocks for the minimum price of the day, and sell all stocks for the maximum price of the day.
+
+While it's a silly heuristic that doesn't account for large time scales, this is a fine heuristic that should yield mostly good results, right? Nope, results are still mostly negative. More debugging awaits me.
+
+Also, Ricardo started working on a report today.
